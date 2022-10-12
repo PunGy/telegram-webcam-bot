@@ -1,0 +1,5 @@
+bot
+test/*
+config/*.custom.yml
+.DS_Store
+.idea

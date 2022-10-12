@@ -1,0 +1,37 @@
+basic:
+  host: Host
+  host-id: -1
+  client: Client
+  client-id: -1
+  bot-key: unspecified
+
+webcam:
+  device-id: 0
+
+keyboard:
+  general:   
+    request-photo: Make photo
+    request-video: Record video
+    help: Help
+    home: Home
+  
+  host:
+    client-interaction-menu: Interaction with client
+    little-leave: Back soon
+    im-back: I'm back
+    lunch: Lunch
+    went-home: Went home
+    show-myself: Show myself
+    show-vedio: Show video
+  client:
+    ping: Ping the host
+
+responses:
+  help: Here's what i can
+  choose-video-duration: choose duration
+  wrong-duration-format: wrong format, enter the number
+  little-leave: i leaved
+  im-back: i'm back
+  lunch: dinner
+  went-home: going home
+  show-myself: hey look
