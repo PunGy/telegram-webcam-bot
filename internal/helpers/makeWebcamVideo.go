@@ -28,7 +28,7 @@ func MakeWebcamVideo(deviceID string, length int) (*string, error) {
 
 	tmpFile := strconv.FormatInt(time.Now().Unix(), 10) + "_video.mp4"
 	var fps float64 = 25.0
-	writer, err := gocv.VideoWriterFile(tmpFile, "MP4V", float64(fps), img.Cols(), img.Rows(), true)
+	writer, err := gocv.VideoWriterFile(tmpFile, "mp4v", float64(fps), img.Cols(), img.Rows(), true)
 	if err != nil {
 		log.Printf("Error opening video writer %v", err)
 
