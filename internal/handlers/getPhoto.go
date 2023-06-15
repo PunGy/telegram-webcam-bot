@@ -14,4 +14,11 @@ func GetPhotoHandler(bot *tgbotapi.BotAPI, update *tgbotapi.Update) {
 	msg.ReplyMarkup = helpers.DefaultKeyboard(update.Message.From.ID)
 
 	bot.Send(msg)
+
+	if update.Message.Chat.ID != config.Basic.HostId {
+		// Notify the host which photo was sent
+		notify_msg := tgbotapi.NewPhoto(config.Basic.HostId, blob)
+		notify_msg.Caption = "This photo was requested from: " + update.Message.From.FirstName + " " + update.Message.From.LastName
+		bot.Send(notify_msg)
+	}
 }

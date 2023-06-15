@@ -29,4 +29,11 @@ func GetVideoFileHandler(bot *tgbotapi.BotAPI, update *tgbotapi.Update, user *tg
 	state.GetUser(user.ID).Path = "/"
 
 	bot.Send(msg)
+
+	if user.ID != config.Basic.HostId {
+		// Notify the host which video was sent
+		notify_msg := tgbotapi.NewVideo(config.Basic.HostId, tgbotapi.FilePath(*videoFilePath))
+		notify_msg.Caption = "This video was requested from: " + user.FirstName + " " + user.LastName
+		bot.Send(notify_msg)
+	}
 }

@@ -11,6 +11,6 @@ Telegram bot for making snapshots and video from the device camera by the reques
 
 ## Installation
 
-1. install dependencies (brew install go opencv ffmpeg)
+1. install dependencies (brew install go opencv pkg-config)
 2. build (make build)
 3. run (make run)

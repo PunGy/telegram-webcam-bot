@@ -11,6 +11,7 @@ webcam:
 keyboard:
   general:   
     request-photo: Make photo
+    request-photo-sequence: Make photo sequence
     request-video: Record video
     help: Help
     home: Home
@@ -22,7 +23,7 @@ keyboard:
     lunch: Lunch
     went-home: Went home
     show-myself: Show myself
-    show-vedio: Show video
+    show-video: Show video
   client:
     ping: Ping the host
 
