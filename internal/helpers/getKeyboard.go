@@ -11,6 +11,7 @@ func DefaultKeyboard(userID int64) *tg.ReplyKeyboardMarkup {
 	keyboard := [][]tg.KeyboardButton{
 		tg.NewKeyboardButtonRow(
 			tg.NewKeyboardButton(cfg.Keyboard.General.RequestPhoto),
+			tg.NewKeyboardButton(cfg.Keyboard.General.RequestPhotoSequence),
 			tg.NewKeyboardButton(cfg.Keyboard.General.RequestVideo),
 		),
 	}
@@ -35,26 +36,51 @@ func DefaultKeyboard(userID int64) *tg.ReplyKeyboardMarkup {
 	}
 }
 
-func NewDurationButton(duration uint64) tg.InlineKeyboardButton {
-	durationString := strconv.FormatUint(duration, 10)
-	callbackData := "duration_" + durationString
+func NewNumberButton(size uint64, prefix string) tg.InlineKeyboardButton {
+	str := strconv.FormatUint(size, 10)
+	data := prefix + "_" + str
 
 	return tg.InlineKeyboardButton{
-		Text:         durationString,
-		CallbackData: &callbackData,
+		Text:         str,
+		CallbackData: &data,
 	}
 }
-func GetDurationKeyboard() *tg.InlineKeyboardMarkup {
+
+func NewDurationButton(duration uint64) tg.InlineKeyboardButton {
+	return NewNumberButton(duration, "duration")
+}
+
+func NewSequenceButton(size uint64) tg.InlineKeyboardButton {
+	return NewNumberButton(size, "sequence")
+}
+
+func makeKeyboard(buttons []tg.InlineKeyboardButton) *tg.InlineKeyboardMarkup {
 	keyboard := [][]tg.InlineKeyboardButton{
+		buttons,
+	}
+
+	return &tg.InlineKeyboardMarkup{
+		InlineKeyboard: keyboard,
+	}
+}
+
+func GetSequenceSizeKeyboard() *tg.InlineKeyboardMarkup {
+	return makeKeyboard(
+		tg.NewInlineKeyboardRow(
+			NewSequenceButton(3),
+			NewSequenceButton(5),
+			NewSequenceButton(8),
+		),
+	)
+}
+
+func GetDurationKeyboard() *tg.InlineKeyboardMarkup {
+	return makeKeyboard(
 		tg.NewInlineKeyboardRow(
 			NewDurationButton(10),
 			NewDurationButton(20),
 			NewDurationButton(30),
 			NewDurationButton(40),
 		),
-	}
-
-	return &tg.InlineKeyboardMarkup{
-		InlineKeyboard: keyboard,
-	}
+	)
 }

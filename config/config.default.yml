@@ -30,7 +30,8 @@ keyboard:
 responses:
   help: Here's what i can
   choose-video-duration: choose duration
-  wrong-duration-format: wrong format, enter the number
+  choose-sequence-size: choose how many pictures to make
+  number-expected: wrong format, enter the number
   little-leave: i leaved
   im-back: i'm back
   lunch: dinner

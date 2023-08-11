@@ -20,10 +20,11 @@ type ConfigT struct {
 
 	Keyboard struct {
 		General struct {
-			RequestPhoto string `yaml:"request-photo"`
-			RequestVideo string `yaml:"request-video"`
-			Help         string `yaml:"help"`
-			Home         string `yaml:"home"`
+			RequestPhoto         string `yaml:"request-photo"`
+			RequestPhotoSequence string `yaml:"request-photo-sequence"`
+			RequestVideo         string `yaml:"request-video"`
+			Help                 string `yaml:"help"`
+			Home                 string `yaml:"home"`
 		}
 
 		Host struct {
@@ -48,7 +49,8 @@ type ConfigT struct {
 	Responses struct {
 		Help                string `yaml:"help"`
 		ChooseVideoDuration string `yaml:"choose-video-duration"`
-		WrongDurationFormat string `yaml:"wrong-duration-format"`
+		ChooseSequenceSize  string `yaml:"choose-sequence-size"`
+		NumberExpected      string `yaml:"number-expected"`
 		LittleLeave         string `yaml:"little-leave"`
 		ImBack              string `yaml:"im-back"`
 		Lunch               string `yaml:"lunch"`

@@ -3,3 +3,4 @@ test/*
 config/*.custom.yml
 .DS_Store
 .idea
+__debug*

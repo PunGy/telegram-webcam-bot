@@ -9,6 +9,8 @@ import (
 
 func HandleCallbackQuery(bot *tg.BotAPI, update *tg.Update) {
 	switch {
+	case strings.HasPrefix(update.CallbackQuery.Data, "sequence_"):
+		handlers.SendPhotoSequence(bot, update, update.CallbackQuery.From.ID, update.CallbackQuery.Data[len("sequence_"):])
 	case strings.HasPrefix(update.CallbackQuery.Data, "duration_"):
 		handlers.GetVideoFileHandler(bot, update, update.CallbackQuery.From, update.CallbackQuery.Data[len("duration_"):])
 	}

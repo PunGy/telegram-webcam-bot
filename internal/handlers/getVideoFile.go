@@ -14,7 +14,7 @@ func GetVideoFileHandler(bot *tgbotapi.BotAPI, update *tgbotapi.Update, user *tg
 
 	videoLength, err := strconv.Atoi(duration)
 	if err != nil {
-		bot.Send(tgbotapi.NewMessage(user.ID, config.Responses.WrongDurationFormat))
+		bot.Send(tgbotapi.NewMessage(user.ID, config.Responses.NumberExpected))
 		return
 	}
 

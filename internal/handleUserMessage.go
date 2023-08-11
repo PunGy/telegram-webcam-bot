@@ -16,12 +16,18 @@ func HandleUserMessage(bot *tg.BotAPI, update *tg.Update) {
 		handlers.GetVideoFileHandler(bot, update, update.Message.From, update.Message.Text)
 		return
 	}
+	if user.Path == "/get-sequence-size" {
+		handlers.SendPhotoSequence(bot, update, update.Message.From.ID, update.Message.Text)
+		return
+	}
 
 	switch update.Message.Text {
 	case config.Keyboard.General.Help:
 		handlers.SendMessage(bot, update, "Unknown command", update.Message.From.ID, true)
 	case config.Keyboard.General.RequestPhoto:
 		handlers.GetPhotoHandler(bot, update)
+	case config.Keyboard.General.RequestPhotoSequence:
+		handlers.GetPhotoSequenceHandler(bot, update)
 	case config.Keyboard.General.RequestVideo:
 		handlers.GetVideoHandler(bot, update)
 	case config.Keyboard.Host.LittleLeave:
