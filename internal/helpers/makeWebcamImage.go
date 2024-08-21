@@ -10,7 +10,7 @@ import (
 func MakeWebcamImage(deviceID string) ([]byte, error) {
 	webcam, err := gocv.OpenVideoCapture(deviceID)
 	if err != nil {
-		log.Fatalf("Error: opening of video capture device: %v\n", err)
+		log.Printf("Error: opening of video capture device: %v\n", err)
 		return nil, err
 	}
 
@@ -22,12 +22,12 @@ func MakeWebcamImage(deviceID string) ([]byte, error) {
 	webcam.Grab(30) // Skip first 30 frames to get camera properly initialized and focused
 
 	if ok := webcam.Read(&img); !ok {
-		log.Fatalf("Cannot read device %v\n", deviceID)
-		return nil, errors.New("Cannot read device")
+		log.Printf("Cannot read device %v\n", deviceID)
+		return nil, errors.New("cannot read device")
 	}
 
 	if img.Empty() {
-		log.Fatalf("no image")
+		log.Printf("no image")
 	}
 
 	r, e := gocv.IMEncode(gocv.JPEGFileExt, img)

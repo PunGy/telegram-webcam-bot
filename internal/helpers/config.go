@@ -64,7 +64,6 @@ var configOnce sync.Once
 var cfg ConfigT
 
 func Config() *ConfigT {
-
 	configOnce.Do(func() {
 		root := GetDir("../..")
 

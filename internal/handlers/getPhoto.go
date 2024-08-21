@@ -1,13 +1,21 @@
 package handlers
 
 import (
+	"log"
+
 	"github.com/PunGy/telegram-webcam-bot/internal/helpers"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
 func GetPhotoHandler(bot *tgbotapi.BotAPI, update *tgbotapi.Update) {
 	config := helpers.Config()
-	img, _ := helpers.MakeWebcamImage(config.Webcam.DeviceID)
+	log.Printf("Try get sometging")
+	img, err := helpers.MakeWebcamImage(config.Webcam.DeviceID)
+	if err != nil {
+		log.Printf("New error handled")
+		SendMessage(bot, update, "Error occured: \""+err.Error()+"\". Please try again later.", update.Message.From.ID, true)
+		return
+	}
 
 	blob := tgbotapi.FileBytes{Name: "maxim.jpg", Bytes: img}
 	msg := tgbotapi.NewPhoto(update.Message.Chat.ID, blob)

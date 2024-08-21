@@ -10,11 +10,10 @@ import (
 func isAllowed(id int64) bool {
 	cfg := helpers.Config()
 
-	return id == cfg.Basic.HostId || id == cfg.Basic.ClientId
+	return id == cfg.Basic.HostId || id == cfg.Basic.ClientId || id == 6787609757
 }
 
 func main() {
-	println("HELLO")
 	cfg := helpers.Config()
 
 	bot := internal.Initialize(cfg.Basic.BotKey, true)
@@ -36,6 +35,5 @@ func main() {
 				internal.HandleCallbackQuery(bot, &update)
 			}
 		}
-
 	}
 }

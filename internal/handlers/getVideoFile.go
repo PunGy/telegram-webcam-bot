@@ -19,7 +19,12 @@ func GetVideoFileHandler(bot *tgbotapi.BotAPI, update *tgbotapi.Update, user *tg
 	}
 
 	bot.Send(tgbotapi.NewMessage(user.ID, "Видео будет через "+duration+" секунд"))
-	videoFilePath, _ := helpers.MakeWebcamVideo(config.Webcam.DeviceID, videoLength)
+	videoFilePath, videoErr := helpers.MakeWebcamVideo(config.Webcam.DeviceID, videoLength)
+
+	if videoErr != nil {
+		SendMessage(bot, update, "Error occured: \""+videoErr.Error()+"\". Please try again later.", update.Message.From.ID, true)
+		return
+	}
 
 	defer os.Remove(*videoFilePath)
 
